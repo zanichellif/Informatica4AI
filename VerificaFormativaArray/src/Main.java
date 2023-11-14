@@ -10,7 +10,7 @@ public class Main {
                 Premere 3 per la rescissione del contratto
                 Premere 4 per stampare le medie
                 Premere 5 per ordinare in ordine decrescente di prezzo
-                Premere 6 per uscire dal programma """;
+                Premere 6 per uscire dal programma\s""";
         int scelta;
 
         ArrayList<Acqua> elenco = new ArrayList<>();
@@ -41,6 +41,7 @@ public class Main {
                         System.out.println("Inserire la co2: ");
                         co2 = in.nextDouble();
                         AcquaFrizzante fr = new AcquaFrizzante(marca, prezzo, residuo_fisso, co2);
+                        elenco.add(fr);
                     } else {
                         System.out.println("Tipo non valido");
                     }
@@ -69,7 +70,13 @@ public class Main {
                     double somma_nat = 0, somma_fr = 0;
                     int c_nat = 0, c_fr = 0;
                     for (Acqua ac: elenco) {
-                        if (ac instanceof Acqua){
+                        /*
+                        ATTENZIONE QUI
+                        Se non mettessi la seconda condizione, tutte le acque frizzanti sarebbero anche acque
+                        Quindi le medie sarebbero sballate
+                        Normalmente non avevamo questo problema perchè la classe padre era astratta
+                         */
+                        if (ac != null && !(ac instanceof AcquaFrizzante)){
                             somma_nat += ac.getPrezzo();
                             c_nat++;
                         }
@@ -77,11 +84,18 @@ public class Main {
                             somma_fr += ac.getPrezzo();
                             c_fr++;
                         }
-
                     }
+
+                    //Controllo che il contatore non sia zero perchè sennò dividerei per zero
+                    if (c_nat != 0)
+                        System.out.println("Media prezzi acqua naturale: " + somma_nat/c_nat);
+                    if (c_fr != 0)
+                    System.out.println("Media prezzi acqua frizzanti: " + somma_fr/c_fr);
                 }
                     break;
                 case 5:
+                    //Ordine decrescente
+                    elenco.sort(new AcquaComparator().reversed());
                     break;
                 case 6:
                     System.out.println("Grazie per aver utilizzato questo gestionale!");
