@@ -1,0 +1,1 @@
+Studenti{nome='Alfonso', cognome='Signorini', media_voti=9.0}Studenti{nome='Quarantaquattro', cognome='Miao', media_voti=6.0}Studenti{nome='Signor', cognome='Giancarlo', media_voti=7.5}
