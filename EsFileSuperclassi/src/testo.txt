@@ -1,0 +1,12 @@
+alimentare
+pasta
+2.50
+12/06/2024
+nonalimentare
+tavolo
+50.0
+legno
+alimentare
+croccantelle
+0.50
+25/09/2030
