@@ -1,0 +1,12 @@
+Intellij
+250.0
+Software
+5.0
+Switch
+25.0
+Hardware
+2.5
+Gorilla Game Banana
+0.0
+Software
+300.0
