@@ -1,6 +1,9 @@
+import javax.swing.plaf.PanelUI;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -9,18 +12,22 @@ public class Main {
                 Premere 1 per inserire un nuovo modello
                 Premere 2 per salvare su file di testo
                 Premere 3 per stampare la lista di tutti i dispositivi
-                Premere 4 per stampare ripristinare da file di testo
+                Premere 4 per ripristinare da file di testo
                 Premere 5 per trovare la più conveniente per la combo prezzo+consumi
                 Premere 6 per uscire dal programma\s""";
         int scelta;
 
+
+        final int NUM_LAVAGGI = 100;
+        final double COSTO_KWH = 0.15791;
         Scanner in = new Scanner(System.in);
 
         File f = new File("src" + File.separator + "testo.txt");
 
+        FileWriter fw = new FileWriter(f);
+        BufferedWriter bw = new BufferedWriter(fw);
         FileReader fr = new FileReader(f);
-        FileWriter fw;
-        BufferedWriter bw;
+
         BufferedReader br = new BufferedReader(fr);
 
         ArrayList<Lavatrici> elenco = new ArrayList<>();
@@ -87,9 +94,24 @@ public class Main {
                         }
                         elenco.add(l);
                     }
-
                     break;
                 case 5:
+                    double min =  Double.MAX_VALUE;
+                    double costo100l = Double.MAX_VALUE;
+                    Lavatrici lav_min = null;
+                    for (int i = 1; i < elenco.size(); i++) {
+                        if (!(elenco.get(i) instanceof Lavasciuga)){
+                            costo100l = elenco.get(i).getPrezzo()+NUM_LAVAGGI*COSTO_KWH*elenco.get(i).getConsumo_lavaggio();
+                        }
+                        if (costo100l < min){
+                            min = costo100l;
+                            lav_min = elenco.get(i);
+                        }
+                    }
+                    if (lav_min == null)
+                        System.out.println("Non ci sono lavatrici nel sistema");
+                    else
+                        System.out.println("Lavatrice con combo migliore:\n + " + lav_min.toString());
                     break;
                 case 6:
                     System.out.println("Grazie per aver utilizzato questo gestionale!");
@@ -101,4 +123,6 @@ public class Main {
         }
 
     }
+
+
 }
