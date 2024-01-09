@@ -6,6 +6,13 @@ public class StudentiUniversitari extends Studenti{
         this.matricola = matricola;
     }
 
+    @Override
+    public String toString() {
+        return "StudentiUniversitari{" +
+                "matricola='" + matricola + '\'' +
+                "} " + super.toString();
+    }
+
     public String getMatricola() {
         return matricola;
     }

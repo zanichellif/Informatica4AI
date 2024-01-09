@@ -17,6 +17,15 @@ public class Studenti {
         voto2 = 10.0;
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Studenti{" +
+                "nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'';
+    }
+
     public double calcola_media(){
         return (voto1+voto2)/2;
     }
