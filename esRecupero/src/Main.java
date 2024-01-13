@@ -25,24 +25,14 @@ public class Main {
 
         for (Studenti s: elenco) {
             if (s instanceof StudentiUniversitari)
-                bw.write("universitario");
+                bw.write("universitario\n");
             else
-                bw.write("normale");
-            bw.newLine();
-            bw.write(s.getNome());
-            bw.newLine();
-            bw.write(s.getCognome());
-            bw.newLine();
-            bw.write(Double.toString(s.calcola_media()));
-            bw.newLine();
-            if (s instanceof StudentiUniversitari) {
-                bw.write(((StudentiUniversitari) s).getMatricola());
-                bw.newLine();
-            }
+                bw.write("normale\n");
+            bw.write(s.toFile());
             bw.flush();
         }
 
-        for(int i = 0; i<elenco.size(); i++){
+        for (int i = 0; i<elenco.size(); i++){
             System.out.println(elenco.get(i).toString());
             System.out.println(elenco.get(i).calcola_media());
         }

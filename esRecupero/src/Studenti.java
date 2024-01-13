@@ -26,6 +26,12 @@ public class Studenti {
                 ", cognome='" + cognome + '\'';
     }
 
+
+    public String toFile(){
+        return this.nome + '\n' + this.cognome + '\n' + Double.toString(this.voto1)
+                + '\n' + Double.toString(this.voto2) + '\n';
+    }
+
     public double calcola_media(){
         return (voto1+voto2)/2;
     }

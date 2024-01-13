@@ -13,6 +13,12 @@ public class StudentiUniversitari extends Studenti{
                 "} " + super.toString();
     }
 
+    @Override
+    public String toFile (){
+        return super.toFile()+this.matricola+'\n';
+
+    }
+
     public String getMatricola() {
         return matricola;
     }
