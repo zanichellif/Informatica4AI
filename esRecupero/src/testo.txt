@@ -1,0 +1,13 @@
+normale
+Mario
+Rossi
+8.5
+universitario
+Luigi
+Bianchi
+24.0
+123456
+normale
+Marco
+Verdi
+10.0
