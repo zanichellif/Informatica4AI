@@ -8,14 +8,15 @@ import static java.awt.Font.ITALIC;
 
 public class Schermata extends MioFrame implements ActionListener, WindowListener {
 
-    public Schermata() {
-        super();
-    }
+    private Partita p = new Partita();
 
     public Schermata(String titolo) {
+
         super(titolo);
         GridLayout gl = new GridLayout(3, 2, 50, 0);
         this.setLayout(gl);
+        p.setGoal_casa(3);
+        p.setGoal_trasferta(1);
 
         JLabel casa = new JLabel("Home");
         casa.setFont(new Font("MioFont", ITALIC, 14));
@@ -25,11 +26,11 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         ospiti.setFont(new Font("MioFont", ITALIC, 14));
         this.add(ospiti);
 
-        JLabel punti_casa = new JLabel("0");
+        JLabel punti_casa = new JLabel(Integer.toString(p.getGoal_casa()));
         punti_casa.setFont(new Font("MioFont", Font.BOLD, 42));
         this.add(punti_casa);
 
-        JLabel punti_ospiti = new JLabel("0");
+        JLabel punti_ospiti = new JLabel(Integer.toString(p.getGoal_trasferta()));
         punti_ospiti.setFont(new Font("MioFont", Font.BOLD, 42));
         this.add(punti_ospiti);
 
