@@ -40,6 +40,11 @@ public class Partita {
             goal_trasferta--;
     }
 
+    public void azzera_punteggio(){
+        goal_casa = 0;
+        goal_trasferta = 0;
+    }
+
     public String toFile(){
         return String.valueOf(this.goal_casa) + '\n' + this.goal_trasferta + '\n';
     }

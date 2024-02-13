@@ -24,7 +24,7 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         else
             this.importaRisultato();
 
-        GridLayout gl = new GridLayout(2, 4, 50, 0);
+        GridLayout gl = new GridLayout(0, 4, 50, 0);
         this.setLayout(gl);
 
         JLabel casa = new JLabel("Home");
@@ -53,9 +53,6 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         punti_ospiti.setFont(new Font("MioFont", Font.BOLD, 42));
         this.add(punti_ospiti);
 
-        //TODO domani facciamo gridlayout diverso
-        //GridLayout gl2 = new GridLayout(2, 1);
-
         JButton goal_trasferta = new JButton("+");
         this.add(goal_trasferta);
         goal_trasferta.setActionCommand("goal_trasferta");
@@ -65,6 +62,11 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         this.add(togli_goal_trasferta);
         togli_goal_trasferta.setActionCommand("togli_goal_trasferta");
         togli_goal_trasferta.addActionListener(this);
+
+        JButton reset= new JButton("Azzera");
+        this.add(reset);
+        reset.setActionCommand("azzera");
+        reset.addActionListener(this);
 
 
     }
@@ -89,6 +91,12 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
             }
             case "togli_goal_trasferta":{
                 p.togliGoal_trasferta();
+                punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
+                break;
+            }
+            case "azzera":{
+                p.azzera_punteggio();
+                punti_casa.setText(String.valueOf(p.getGoal_casa()));
                 punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
                 break;
             }
