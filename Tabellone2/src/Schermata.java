@@ -24,47 +24,74 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         else
             this.importaRisultato();
 
-        GridLayout gl = new GridLayout(3, 2, 50, 0);
+        GridLayout gl = new GridLayout(2, 4, 50, 0);
         this.setLayout(gl);
 
         JLabel casa = new JLabel("Home");
         casa.setFont(new Font("MioFont", ITALIC, 14));
         this.add(casa);
 
-        JLabel ospiti = new JLabel("Guest");
-        ospiti.setFont(new Font("MioFont", ITALIC, 14));
-        this.add(ospiti);
-
         punti_casa = new JLabel(String.valueOf(p.getGoal_casa()));
         punti_casa.setFont(new Font("MioFont", Font.BOLD, 42));
         this.add(punti_casa);
-
-        punti_ospiti = new JLabel(String.valueOf(p.getGoal_trasferta()));
-        punti_ospiti.setFont(new Font("MioFont", Font.BOLD, 42));
-        this.add(punti_ospiti);
 
         JButton goal_casa = new JButton("+");
         this.add(goal_casa);
         goal_casa.setActionCommand("goal_casa");
         goal_casa.addActionListener(this);
 
+        JButton togli_goal_casa = new JButton("-");
+        this.add(togli_goal_casa);
+        togli_goal_casa.setActionCommand("togli_goal_casa");
+        togli_goal_casa.addActionListener(this);
+
+        JLabel ospiti = new JLabel("Guest");
+        ospiti.setFont(new Font("MioFont", ITALIC, 14));
+        this.add(ospiti);
+
+        punti_ospiti = new JLabel(String.valueOf(p.getGoal_trasferta()));
+        punti_ospiti.setFont(new Font("MioFont", Font.BOLD, 42));
+        this.add(punti_ospiti);
+
+        //TODO domani facciamo gridlayout diverso
+        //GridLayout gl2 = new GridLayout(2, 1);
+
         JButton goal_trasferta = new JButton("+");
         this.add(goal_trasferta);
         goal_trasferta.setActionCommand("goal_trasferta");
         goal_trasferta.addActionListener(this);
+
+        JButton togli_goal_trasferta= new JButton("-");
+        this.add(togli_goal_trasferta);
+        togli_goal_trasferta.setActionCommand("togli_goal_trasferta");
+        togli_goal_trasferta.addActionListener(this);
 
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("goal_casa")){
-            p.aggiungiGoal_casa();
-            punti_casa.setText(String.valueOf(p.getGoal_casa()));
-        }
-        else if (e.getActionCommand().equals("goal_trasferta")) {
-            p.aggiungiGoal_trasferta();
-            punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
+        switch (e.getActionCommand()) {
+            case "goal_casa": {
+                p.aggiungiGoal_casa();
+                punti_casa.setText(String.valueOf(p.getGoal_casa()));
+                break;
+            }
+            case "goal_trasferta" : {
+                p.aggiungiGoal_trasferta();
+                punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
+                break;
+            }
+            case "togli_goal_casa":{
+                p.togliGoal_casa();
+                punti_casa.setText(String.valueOf(p.getGoal_casa()));
+                break;
+            }
+            case "togli_goal_trasferta":{
+                p.togliGoal_trasferta();
+                punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
+                break;
+            }
         }
     }
 

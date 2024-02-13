@@ -30,6 +30,16 @@ public class Partita {
         goal_trasferta++;
     }
 
+    public void togliGoal_casa(){
+        if(goal_casa > 0)
+            goal_casa--;
+    }
+
+    public void togliGoal_trasferta(){
+        if (goal_trasferta > 0)
+            goal_trasferta--;
+    }
+
     public String toFile(){
         return String.valueOf(this.goal_casa) + '\n' + this.goal_trasferta + '\n';
     }
