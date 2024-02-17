@@ -44,11 +44,47 @@ public class Partita {
     }
 
     public void aggiungi_punto1(){
-        //TODO fare funzione
+        punti1++;
+        if(punti1 - punti2 >= 2 && punti1 >= 4){
+            punti1 = 0;
+            punti2 = 0;
+            game1++;
+        }
+        if (punti1 == 4 && punti2 == 4){
+            punti1 = 3;
+            punti2 = 3;
+        }
+        if(game1 - game2 >= 2 && game1 >= 6){
+            punti1 = 0;
+            punti2 = 0;
+            game1 = 0;
+            game2 = 0;
+            set1++;
+        }
     }
 
+    //TODO fare modifica servizio alla fine di un game
+    //TODO fare tiebreak
+    //TODO fare avvertimento set point/match point
+
     public void aggiungi_punto2(){
-        //TODO fare funzione anche qui
+        punti2++;
+        if(punti2 - punti1 >= 2 && punti2 >= 4){
+            punti1 = 0;
+            punti2 = 0;
+            game2++;
+        }
+        if (punti1 == 4 && punti2 == 4){
+            punti1 = 3;
+            punti2 = 3;
+        }
+        if(game2 - game1 >= 2 && game2 >= 6){
+            punti1 = 0;
+            punti2 = 0;
+            game1 = 0;
+            game2 = 0;
+            set2++;
+        }
     }
 
     public String getGiocatore1() {

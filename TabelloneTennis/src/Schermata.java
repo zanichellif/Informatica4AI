@@ -6,6 +6,8 @@ import java.awt.event.WindowListener;
 
 public class Schermata extends MioFrame implements ActionListener, WindowListener {
     private Partita p = new Partita();
+
+    private JLabel punti1, set1, game1, punti2, set2, game2;
     public Schermata (String titolo){
         super(titolo);
         Font mioFont = new Font("mioFont", Font.BOLD, 16);
@@ -55,13 +57,13 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         JLabel game = new JLabel("game");
         JLabel punti = new JLabel("punti");
         JLabel giocatore1 = new JLabel(p.getGiocatore1());
-        JLabel set1 = new JLabel(String.valueOf(p.getSet1()));
-        JLabel game1 = new JLabel(String.valueOf(p.getGame1()));
-        JLabel punti1 = new JLabel(p.stampaPunti1());
+        set1 = new JLabel(String.valueOf(p.getSet1()));
+        game1 = new JLabel(String.valueOf(p.getGame1()));
+        punti1 = new JLabel(p.stampaPunti1());
         JLabel giocatore2= new JLabel(p.getGiocatore2());
-        JLabel set2 = new JLabel(String.valueOf(p.getSet2()));
-        JLabel game2 = new JLabel(String.valueOf(p.getGame2()));
-        JLabel punti2 = new JLabel(p.stampaPunti2());
+        set2 = new JLabel(String.valueOf(p.getSet2()));
+        game2 = new JLabel(String.valueOf(p.getGame2()));
+        punti2 = new JLabel(p.stampaPunti2());
         giocatore1.setFont(mioFont);
         set1.setFont(mioFont2);
         game1.setFont(mioFont2);
@@ -98,5 +100,12 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
             p.aggiungi_punto1();
         else if (e.getActionCommand().equals("punti2"))
             p.aggiungi_punto2();
+
+        punti1.setText(p.stampaPunti1());
+        game1.setText(String.valueOf(p.getGame1()));
+        set1.setText(String.valueOf(p.getSet1()));
+        punti2.setText(p.stampaPunti2());
+        game2.setText(String.valueOf(p.getGame2()));
+        set2.setText(String.valueOf(p.getSet2()));
     }
 }
