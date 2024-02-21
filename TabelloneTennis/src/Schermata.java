@@ -7,6 +7,7 @@ import java.awt.event.WindowListener;
 
 public class Schermata extends MioFrame implements ActionListener, WindowListener {
     private Partita p = new Partita();
+    //ciao
 
     private JLabel punti1, set1, game1, punti2, set2, game2, servizio1, servizio2;
     public Schermata (String titolo){
