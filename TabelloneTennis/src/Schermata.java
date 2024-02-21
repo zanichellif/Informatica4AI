@@ -2,12 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class Schermata extends MioFrame implements ActionListener, WindowListener {
     private Partita p = new Partita();
 
-    private JLabel punti1, set1, game1, punti2, set2, game2;
+    private JLabel punti1, set1, game1, punti2, set2, game2, servizio1, servizio2;
     public Schermata (String titolo){
         super(titolo);
         Font mioFont = new Font("mioFont", Font.BOLD, 16);
@@ -45,9 +46,9 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         pannelloOvest.setLayout(new GridLayout(3, 1));
         JLabel pippo = new JLabel(" ");
         pannelloOvest.add(pippo);
-        JLabel servizio1 = new JLabel("▶\s\s");
+        servizio1 = new JLabel("▶\s\s");
         pannelloOvest.add(servizio1);
-        JLabel servizio2 = new JLabel("▶\s\s");
+        servizio2 = new JLabel("▶\s\s");
         servizio2.setVisible(false);
         pannelloOvest.add(servizio2);
 
@@ -101,11 +102,22 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         else if (e.getActionCommand().equals("punti2"))
             p.aggiungi_punto2();
 
+        if (p.getServizio() == 1){
+            servizio1.setVisible(true);
+            servizio2.setVisible(false);
+        } else{
+            servizio1.setVisible(false);
+            servizio2.setVisible(true);
+        }
         punti1.setText(p.stampaPunti1());
         game1.setText(String.valueOf(p.getGame1()));
         set1.setText(String.valueOf(p.getSet1()));
         punti2.setText(p.stampaPunti2());
         game2.setText(String.valueOf(p.getGame2()));
         set2.setText(String.valueOf(p.getSet2()));
+    }
+    @Override
+    public void windowClosing(WindowEvent e) {
+        super.windowClosing(e);
     }
 }

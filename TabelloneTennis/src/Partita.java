@@ -7,6 +7,7 @@ public class Partita {
     private int game2;
     private int punti1;
     private int punti2;
+    private int servizio;
 
     public Partita(){
         giocatore1 = "Federer";
@@ -17,6 +18,7 @@ public class Partita {
         game2 = 0;
         punti1 = 0;
         punti2 = 0;
+        servizio = 1;
     }
 
     public String stampaPunti1(){
@@ -49,6 +51,7 @@ public class Partita {
             punti1 = 0;
             punti2 = 0;
             game1++;
+            cambia_servizio();
         }
         if (punti1 == 4 && punti2 == 4){
             punti1 = 3;
@@ -73,6 +76,7 @@ public class Partita {
             punti1 = 0;
             punti2 = 0;
             game2++;
+            cambia_servizio();
         }
         if (punti1 == 4 && punti2 == 4){
             punti1 = 3;
@@ -149,5 +153,16 @@ public class Partita {
 
     public void setPunti2(int punti2) {
         this.punti2 = punti2;
+    }
+
+    public int getServizio(){
+        return servizio;
+    }
+
+    public void cambia_servizio (){
+        if (servizio == 1)
+            servizio = 2;
+        else
+            servizio = 1;
     }
 }
