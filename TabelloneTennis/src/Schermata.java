@@ -7,7 +7,7 @@ import java.awt.event.WindowListener;
 
 public class Schermata extends MioFrame implements ActionListener, WindowListener {
     private Partita p = new Partita();
-    //ciao
+    
 
     private JLabel punti1, set1, game1, punti2, set2, game2, servizio1, servizio2;
     public Schermata (String titolo){
@@ -109,6 +109,12 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         } else{
             servizio1.setVisible(false);
             servizio2.setVisible(true);
+        }
+
+        if (p.matchPoint()){
+            JOptionPane.showMessageDialog(this, "Match point", "Match point", JOptionPane.INFORMATION_MESSAGE);
+        } else if (p.setPoint()){
+            JOptionPane.showMessageDialog(this, "Set point", "Set point", JOptionPane.INFORMATION_MESSAGE);
         }
         punti1.setText(p.stampaPunti1());
         game1.setText(String.valueOf(p.getGame1()));
