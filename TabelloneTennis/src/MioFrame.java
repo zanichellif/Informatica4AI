@@ -11,7 +11,7 @@ public abstract class MioFrame extends JFrame implements WindowListener {
 
     public MioFrame(String titolo){
         super(titolo);
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public void rendiVisibile(MioFrame f){
