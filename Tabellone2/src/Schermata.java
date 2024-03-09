@@ -14,7 +14,7 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
     JLabel punti_casa;
     JLabel punti_ospiti;
     File f = new File ("src" + File.separator + "salvataggio.txt");
-
+    //ciao
 
 
     public Schermata(String titolo) throws IOException {
