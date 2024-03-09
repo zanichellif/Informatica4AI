@@ -8,6 +8,7 @@ public class Partita {
     private int punti1;
     private int punti2;
     private int servizio;
+    private int chi_setpoint;
 
     public Partita(){
         giocatore1 = "Federer";
@@ -66,7 +67,6 @@ public class Partita {
         }
     }
 
-    //TODO fare modifica servizio alla fine di un game
     //TODO fare tiebreak
     //TODO fare avvertimento set point/match point
 
@@ -158,6 +158,29 @@ public class Partita {
     public int getServizio(){
         return servizio;
     }
+
+    public Boolean setPoint(){
+        if ((game1 - game2 >= 1 && game1 >= 5 && punti1 - punti2 >= 1 && punti1 >= 3)){
+            chi_setpoint = 1;
+            return true;
+        }
+
+        if ((game2 - game1 >= 1 && game2 >= 5 && punti2 - punti1 >= 1 && punti2 >= 3)){
+            chi_setpoint = 2;
+            return true;
+        }
+        return false;
+    }
+    public Boolean matchPoint(){
+        if (setPoint() && set1 == 2 && set2 == 2)
+            return true;
+        if (setPoint() && chi_setpoint == 1 && set1 == 2)
+            return true;
+        if (setPoint() && chi_setpoint == 2 && set2 == 2)
+            return true;
+        return false;
+    }
+
 
     public void cambia_servizio (){
         if (servizio == 1)
