@@ -13,20 +13,16 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
     private Partita p;
     JLabel punti_casa;
     JLabel punti_ospiti;
-    File f = new File ("src" + File.separator + "salvataggio.txt");
-    //ciao
+    File f;
 
 
     public Schermata(String titolo) throws IOException {
         super(titolo);
-        if (!f.exists())
-            p = new Partita();
-        else
-            this.importaRisultato();
 
         GridLayout gl = new GridLayout(0, 4, 50, 0);
         this.setLayout(gl);
 
+        p = new Partita();
         JLabel casa = new JLabel("Home");
         casa.setFont(new Font("MioFont", ITALIC, 14));
         this.add(casa);
@@ -68,6 +64,11 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         reset.setActionCommand("azzera");
         reset.addActionListener(this);
 
+        JButton carica = new JButton("Carica");
+        this.add(carica);
+        carica.setActionCommand("carica");
+        carica.addActionListener(this);
+
 
     }
 
@@ -100,6 +101,25 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
                 punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
                 break;
             }
+            case "carica":{
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showOpenDialog(this);
+
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    f = fc.getSelectedFile();
+                    try {
+                        this.importaRisultato();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    punti_casa.setText(String.valueOf(p.getGoal_casa()));
+                    punti_ospiti.setText(String.valueOf(p.getGoal_trasferta()));
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "MA CHE FAI", "CaTtIVo!1!1!1", JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
         }
     }
 
@@ -113,9 +133,10 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
 
     @Override
     public void windowClosing(WindowEvent e) {
-        FileWriter fw;
+        //BUG SE NON CARICATE NESSUN FILE. F COSA È?
+        /*FileWriter fw;
         try {
-            fw = new FileWriter(f);
+                fw = new FileWriter(f);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -129,7 +150,7 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
             bw.flush();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
-        }
+        }*/
         super.windowClosing(e);
     }
 }
