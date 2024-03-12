@@ -15,7 +15,6 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
     JLabel punti_ospiti;
     File f;
 
-
     public Schermata(String titolo) throws IOException {
         super(titolo);
 
@@ -26,6 +25,7 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         JLabel casa = new JLabel("Home");
         casa.setFont(new Font("MioFont", ITALIC, 14));
         this.add(casa);
+
 
         punti_casa = new JLabel(String.valueOf(p.getGoal_casa()));
         punti_casa.setFont(new Font("MioFont", Font.BOLD, 42));
@@ -108,7 +108,7 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     f = fc.getSelectedFile();
                     try {
-                        this.importaRisultato();
+                        this.importaRisultato(f);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -123,8 +123,8 @@ public class Schermata extends MioFrame implements ActionListener, WindowListene
         }
     }
 
-    public void importaRisultato() throws IOException {
-        FileReader fr = new FileReader(f);
+    public void importaRisultato(File f2) throws IOException {
+        FileReader fr = new FileReader(f2);
         BufferedReader br = new BufferedReader(fr);
         int import_goal_casa = Integer.parseInt(br.readLine());
         int import_goal_trasferta = Integer.parseInt(br.readLine());
